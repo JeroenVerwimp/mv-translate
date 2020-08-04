@@ -35,6 +35,7 @@ jobs:
     - uses: actions/upload-artifact@v2.1.3
       with:
         name: front-end
-        path: front-end/dist/
+        path: |
+          front-end/dist/
         
         
