@@ -18,6 +18,12 @@ jobs:
       run: |
         cd front-end
         npm install
+        
+    - name: Cache
+      uses: actions/cache@v2.1.0
+      with:
+        path: node_modules
+        key: front-end-node-modules
       
     - name: Build front-end
       run: |
@@ -27,6 +33,6 @@ jobs:
     - uses: actions/upload-artifact@v2.1.3
       with:
         name: front-end
-        path: .
+        path: dist
         
         
