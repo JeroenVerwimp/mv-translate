@@ -32,12 +32,16 @@ export default {
 #sub-header {
   height: 20px;
   background-color: #5d4b75;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
 }
 
 @media (min-width:1025px) {
   #header .logo img {
     margin: initial;
+  }
+
+  #sub-header {
+    margin-bottom: 50px;
   }
 }
 </style>

@@ -9,11 +9,10 @@ function requiredQueries(queries) {
         }
 
         if (missingQueries.length !== 0) {
-            return res.status(400)
-                        .json({
-                            error: "Missing query parameter!",
-                            value: missingQueries
-                        });
+            const err = new Error("");
+            err.code = "MISSING_QUERY_PARAMETERS";
+            err.status = 400;
+            return next(err);
         }
 
         next();
