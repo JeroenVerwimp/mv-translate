@@ -14,6 +14,20 @@ import App from "./App.vue";
 
 const store = new Vuex.Store({
   state: {
+    languages: [
+      {
+        code: "nl",
+        name: "Nederlands"
+      },
+      {
+        code: "fr",
+        name: "Français"
+      },
+      {
+        code: "en",
+        name: "English"
+      }
+    ],
     sourceLanguage: "nl",
     targetLanguage: "fr"
   },
@@ -28,6 +42,11 @@ const store = new Vuex.Store({
       const tempSl = state.sourceLanguage;
       state.sourceLanguage = state.targetLanguage;
       state.targetLanguage = tempSl;
+    }
+  },
+  getters: {
+    getLanguagesSorted: state => {
+      return state.languages.sort((a, b) => a.name.localeCompare(b.name));
     }
   }
 });

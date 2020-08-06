@@ -6,14 +6,16 @@
       :value="value"
       @change="onChange"
     >
-      <option value="en">English</option>
-      <option value="fr">Français</option>
-      <option value="nl">Nederlands</option>
+      <option v-for="(lang, key) in languages" :key="key" :value="lang.code">
+        {{ lang.name }}
+      </option>
     </select>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "LanguageSelector",
   props: {
@@ -23,6 +25,9 @@ export default {
       required: true
     }
   },
+  computed: mapGetters({
+    languages: "getLanguagesSorted"
+  }),
   data() {
     return {
       language: this.lang
