@@ -9,7 +9,10 @@
       </label>
       <span class="error" v-if="error">{{ error }}</span>
       <Loader v-if="loading" />
-      <span class="download" v-if="downloadedBlob" @click="downloadFile()">Download</span>
+      <div class="download-wrapper" v-if="downloadedBlob">
+        <span class="download" @click="downloadFile()">Download</span>
+        <a href="#" @click="reset()">Selecteer een ander bestand.</a>
+      </div>
     </div>
   </div>
 </template>
@@ -33,7 +36,8 @@ export default {
   methods: {
     selectFile,
     translate,
-    downloadFile
+    downloadFile,
+    reset
   }
 };
 
@@ -44,6 +48,11 @@ function data() {
     error: "",
     downloadedBlob: ""
   };
+}
+
+function reset() {
+  this.file = "";
+  this.downloadedBlob = "";
 }
 
 function selectFile() {
@@ -117,6 +126,7 @@ $error-bg-color: #f5c9c9;
 }
 
 .file-label, .download {
+  display: block;
   padding: 10px 20px;
   border-radius: 8px;
   text-align: center;
@@ -124,7 +134,6 @@ $error-bg-color: #f5c9c9;
 }
 
 .file-label {
-  display: block;
   width: fit-content;
   margin: 0 auto;
 
@@ -143,11 +152,24 @@ $error-bg-color: #f5c9c9;
   }
 }
 
-.download {
-  background-color: $download-bg-color;
+.download-wrapper {
+  .download {
+    background-color: $download-bg-color;
 
-  &:hover {
-    background-color: darken($download-bg-color, 5);
+    &:hover {
+      background-color: darken($download-bg-color, 5);
+    }
+  }
+
+  a {
+    display: block;
+    padding-top: 10px;
+    text-decoration: none;
+    color: #5d4b75;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 </style>
