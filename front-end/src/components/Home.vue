@@ -2,10 +2,10 @@
   <div class="wrapper">
     <div class="content">
       <div class="info">
-        <h1 class="title">Translate</h1>
+        <h1 class="title">Mercier Vanderlinden Translate</h1>
         <div class="line"></div>
         <p>
-          Translate is de gloednieuwe vertaalapplicatie van Mercier Vanderlinden. Nederlands naar Frans, en omgekeerd, vertalen is nog nooit zo gemakkelijk geweest.
+          Mercier Vanderlinden Translate is de gloednieuwe vertaalapplicatie van Mercier Vanderlinden. Nederlands naar Frans, en omgekeerd, vertalen is nog nooit zo gemakkelijk geweest.
         </p>
       </div>
       <div class="details">
@@ -20,7 +20,7 @@
         <h1 class="title">Files</h1>
         <div class="line"></div>
         <p>
-          Mercier Vanderlinden Translate kan niet enkel woorden en zinnen vertalen, maar ook bestanden. Om een bestand te vertalen selecteerd u gewoon het bestand en de rest gebeurt vanzelf.
+          Niet enkel woorden en zinnen kunnen vertaald worden, Mercier Vanderlinden Translate kan zelfs bestanden vertalen. U selecteerd gewoon het te vertalen bestand en de rest gebeurt vanzelf.
         </p>
       </div>
     </div>
@@ -29,7 +29,7 @@
         <h1 class="title">Mobile</h1>
         <div class="line"></div>
         <p>
-          Vertaal eender wat, wanneer u wilt! Onderweg naar het werk of in een drukke business meeting? Geen probleem! Gebruikt gewoon je GSM, Translate heeft een gemakkelijk te gebruiken mobiele website.
+          Vertaal eender wat, wanneer u wil! Onderweg naar het werk of in een drukke business meeting? Geen probleem! Gebruik gewoon uw GSM, Mercier Vanderlinden Translate heeft een gemakkelijk te gebruiken mobiele website.
         </p>
       </div>
       <div class="details">

@@ -134,10 +134,6 @@ function translate() {
     padding: 20px;
     margin-top: 15px;
     height: 180px;
-
-    &:disabled {
-      cursor: not-allowed;
-    }
   }
 }
 

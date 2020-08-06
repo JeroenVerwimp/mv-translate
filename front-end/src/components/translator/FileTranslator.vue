@@ -9,6 +9,7 @@
       </label>
       <span class="error" v-if="error">{{ error }}</span>
       <Loader v-if="loading" />
+      <span class="download" v-if="downloadedBlob" @click="downloadFile()">Download</span>
     </div>
   </div>
 </template>
@@ -40,7 +41,8 @@ function data() {
   return {
     file: "",
     loading: false,
-    error: ""
+    error: "",
+    downloadedBlob: ""
   };
 }
 
@@ -64,10 +66,7 @@ function translate() {
     })
     .then(response => {
       // download file
-      this.downloadFile(new Blob([response.data]));
-
-      // reset
-      this.file = "";
+      this.downloadedBlob = new Blob([response.data]);
       this.error = "";
     })
     .catch(error => {
@@ -80,19 +79,24 @@ function translate() {
     });
 }
 
-function downloadFile(blob) {
-  var fileURL = window.URL.createObjectURL(blob);
+function downloadFile() {
+  var fileURL = window.URL.createObjectURL(this.downloadedBlob);
   var fileLink = document.createElement("a");
 
   fileLink.href = fileURL;
   fileLink.setAttribute("download", `translated-${this.file.name}`);
   document.body.appendChild(fileLink);
   fileLink.click();
+
+  // reset
+  this.file = "";
+  this.downloadedBlob = "";
 }
 </script>
 
 <style scoped lang="scss">
 $bg-color: #f7f3f8;
+$download-bg-color: #e6f0e8;
 $error-bg-color: #f5c9c9;
 
 .file-translator-wrapper {
@@ -112,15 +116,19 @@ $error-bg-color: #f5c9c9;
   background-color: $error-bg-color;
 }
 
+.file-label, .download {
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+}
+
 .file-label {
   display: block;
   width: fit-content;
   margin: 0 auto;
-  padding: 10px 20px;
 
   background-color: $bg-color;
-  border-radius: 8px;
-  text-align: center;
 
   input {
     display: none;
@@ -132,6 +140,14 @@ $error-bg-color: #f5c9c9;
 
   &:hover {
     background-color: darken($bg-color, 5);
+  }
+}
+
+.download {
+  background-color: $download-bg-color;
+
+  &:hover {
+    background-color: darken($download-bg-color, 5);
   }
 }
 </style>
