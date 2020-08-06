@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Header/>
-    <Home/>
+    <Header />
+    <Home />
   </div>
 </template>
 
@@ -21,6 +21,6 @@ export default {
 <style lang="scss">
 #app {
   margin-top: 0px;
-  color: #5D4B75;
+  color: #5d4b75;
 }
 </style>

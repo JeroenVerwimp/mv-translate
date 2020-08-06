@@ -35,7 +35,7 @@ export default {
   margin-bottom: 10px;
 }
 
-@media (min-width:1025px) {
+@media (min-width: 1025px) {
   #header .logo img {
     margin: initial;
   }

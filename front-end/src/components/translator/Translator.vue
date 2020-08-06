@@ -1,12 +1,12 @@
 <template>
   <div class="translator">
     <div class="box">
-      <LanguageSelector v-model="sl" @changed="sourceLangChanged" />
+      <LanguageSelector :value="sl" @changed="sourceLangChanged" />
       <textarea v-model="content" v-stream:input="text$"></textarea>
     </div>
     <div class="arrow"><span>&#8594;</span></div>
     <div class="box">
-      <LanguageSelector v-model="tl" @changed="targetLangChanged" />
+      <LanguageSelector :value="tl" @changed="targetLangChanged" />
       <textarea :disabled="true" v-model="result"></textarea>
     </div>
   </div>
@@ -14,6 +14,7 @@
 
 <script>
 import { debounceTime, pluck } from "rxjs/operators";
+import { mapState } from "vuex";
 
 import config from "../../config";
 import LanguageSelector from "./LanguageSelector.vue";
@@ -24,8 +25,12 @@ export default {
     LanguageSelector
   },
   domStreams: ["text$"],
-  subscriptions,
+  computed: mapState({
+    sl: "sourceLanguage",
+    tl: "targetLanguage"
+  }),
   data,
+  subscriptions,
   methods: {
     inputTextChanged,
     sourceLangChanged,
@@ -35,6 +40,13 @@ export default {
   }
 };
 
+function data() {
+  return {
+    content: "",
+    result: ""
+  };
+}
+
 function subscriptions() {
   this.text$
     .pipe(debounceTime(400), pluck("event", "target", "value"))
@@ -42,15 +54,6 @@ function subscriptions() {
       // this.content = text;
       this.translate();
     });
-}
-
-function data() {
-  return {
-    sl: "nl",
-    tl: "fr",
-    content: "",
-    result: ""
-  };
 }
 
 function inputTextChanged(text) {
@@ -65,7 +68,7 @@ function sourceLangChanged(newLang) {
     return;
   }
 
-  this.sl = newLang;
+  this.$store.commit("changeSource", newLang);
   this.translate();
 }
 
@@ -76,14 +79,12 @@ function targetLangChanged(newLang) {
     return;
   }
 
-  this.tl = newLang;
+  this.$store.commit("changeTarget", newLang);
   this.translate();
 }
 
 function swapContent() {
-  const tempSl = this.sl;
-  this.sl = this.tl;
-  this.tl = tempSl;
+  this.$store.commit("swapLanguages");
 
   const tempContent = this.content;
   this.content = this.result;
@@ -95,6 +96,7 @@ function translate() {
     this.result = this.content;
     return;
   }
+
   this.$http
     .get(config.API_URL + "/translate", {
       params: {
@@ -157,7 +159,7 @@ function translate() {
   }
 }
 
-@media (min-width:1025px) {
+@media (min-width: 1025px) {
   .translator {
     flex-direction: row;
   }

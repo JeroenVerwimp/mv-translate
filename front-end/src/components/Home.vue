@@ -56,7 +56,6 @@ export default {
 .content {
   width: 100%;
   max-width: 1400px;
-  
   padding-bottom: 40px;
 
   &.content-rev {
@@ -96,7 +95,7 @@ export default {
   }
 }
 
-@media (min-width:1025px) {
+@media (min-width: 1025px) {
   .content {
     display: flex;
 
