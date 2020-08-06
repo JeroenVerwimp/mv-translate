@@ -91,7 +91,7 @@ function swapContent() {
 }
 
 function translate() {
-  if (this.sl === this.tl) {
+  if (this.sl === this.tl || this.content === "") {
     this.result = this.content;
     return;
   }
